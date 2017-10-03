@@ -1,6 +1,7 @@
 //your code here
 void setup()
 {
+  size (811,617);
 	//your code here
 }
 void draw()
@@ -9,7 +10,13 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+  double nX,nY,nSpd,nAngle; 
+	NormalParticle()
+  {
+    nX = width/2;
+    nY = height/2;
+    nSpd =
+  }
 }
 interface Particle
 {
@@ -23,4 +30,3 @@ class JumboParticle //uses inheritance
 {
 	//your code here
 }
-
