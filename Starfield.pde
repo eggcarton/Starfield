@@ -1,8 +1,9 @@
-//your code here
+NormalParticle [] name;
 void setup()
 {
   size (811,617);
-	//your code here
+  name = new NormalParticle[657];
+  //for loop here please
 }
 void draw()
 {
@@ -13,9 +14,19 @@ class NormalParticle
   double nX,nY,nSpd,nAngle; 
 	NormalParticle()
   {
-    nX = width/2;
-    nY = height/2;
-    nSpd =
+    nX = width;
+    nY = height;
+    nSpd = (Math.random())+11;
+    nAngle = (Math.random()*4*PI);
+  }
+  void move()
+  {
+    nX = nX + Math.cos(nAngle) * nSpd;
+    nY = nY + Math.sin(nAngle) * nSpd;
+  }
+  void show()
+  {
+    ellipse((float)nX,(float)nY,5,5);
   }
 }
 interface Particle
