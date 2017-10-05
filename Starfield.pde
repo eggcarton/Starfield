@@ -2,30 +2,43 @@ NormalParticle [] name;
 void setup()
 {
   size (811,617);
-  name = new NormalParticle[657];
-  //for loop here please
+  name = new NormalParticle[1000];
+    for (int i = 0 ; i < name.length; i++)
+    {
+      name[i] = new NormalParticle();
+    }
 }
 void draw()
 {
-	//your code here
+  background(0);
+  for (int i = 0 ; i < name.length; i++)
+    {
+      name[i].show();
+      name[i].move();
+    }
 }
 class NormalParticle
 {
-  double nX,nY,nSpd,nAngle; 
+  double nX,nY,nSpd,nAngle;
+  int yes;
 	NormalParticle()
   {
-    nX = width;
-    nY = height;
-    nSpd = (Math.random())+11;
-    nAngle = (Math.random()*4*PI);
+    nX = width/2;
+    nY = height/2;
+    nSpd = (Math.random()*5);
+    nAngle = (Math.random()*2*PI);
+    yes = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
   }
   void move()
   {
     nX = nX + Math.cos(nAngle) * nSpd;
     nY = nY + Math.sin(nAngle) * nSpd;
+    
   }
   void show()
   {
+    noStroke();
+    fill(yes);
     ellipse((float)nX,(float)nY,5,5);
   }
 }
