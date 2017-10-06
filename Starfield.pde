@@ -7,6 +7,7 @@ void setup()
   {
     name[i] = new NormalParticle();
   }
+  name[1] = new OddballParticle();
 }
 void draw()
 {
@@ -19,26 +20,26 @@ void draw()
 }
 class NormalParticle implements Particle
 {
-  double nX, nY, nSpd, nAngle;
+  double x, y, spd, angle;
   int yes;
   NormalParticle()
   {
-    nX = width/2;
-    nY = height/2;
-    nSpd = (Math.random()*10);
-    nAngle = (Math.random()*2*PI);
+    x = width/2;
+    y = height/2;
+    spd = (Math.random()*10);
+    angle = (Math.random()*2*PI);
     yes = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
   }
   public void show()
   {
     noStroke();
     fill(yes);
-    ellipse((float)nX, (float)nY, 5, 5);
+    ellipse((float)x, (float)y, 5, 5);
   }
   public void move()
   {
-    nX = nX + Math.cos(nAngle) * nSpd;
-    nY = nY + Math.sin(nAngle) * nSpd;
+    x = x + Math.cos(angle) * spd;
+    y = y + Math.sin(angle) * spd;
   }
 }
 interface Particle
@@ -46,24 +47,23 @@ interface Particle
   public void show();
   public void move();
 }
-class OddballParticle implements Particle
+class OddballParticle extends NormalParticle
 {
   OddballParticle()
   {
-    
+    spd = (int)(Math.random()*PI);
+    angle = (Math.random()*spd);
   }
-   public void show()
+  public void show()
   {
-    noStroke();
-    fill(yes);
-    ellipse((float)nX, (float)nY, 5, 5);
+    fill(0, 225, 0);
+        ellipse((float)x, (float)y, 50, 50);
   }
   public void move()
   {
-    nX = nX + Math.cos(nAngle) * nSpd;
-    nY = nY + Math.sin(nAngle) * nSpd;
+    x = x + (Math.random()*5)+3;
+    y = y + Math.cos(spd);
   }
-  
 }
 class JumboParticle //uses inheritance
 {
