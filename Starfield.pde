@@ -8,6 +8,7 @@ void setup()
     name[i] = new NormalParticle();
   }
   name[1] = new OddballParticle();
+  name[0] = new JumboParticle();
 }
 void draw()
 {
@@ -17,29 +18,30 @@ void draw()
     name[i].show();
     name[i].move();
   }
+
 }
 class NormalParticle implements Particle
 {
-  double x, y, spd, angle;
-  int yes;
+  double nX, nY, nSpd, nAngle;
+  int nYes;
   NormalParticle()
   {
-    x = width/2;
-    y = height/2;
-    spd = (Math.random()*10);
-    angle = (Math.random()*2*PI);
-    yes = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+    nX = width/2;
+    nY = height/2;
+    nSpd = (Math.random()*10);
+    nAngle = (Math.random()*2*PI);
+    nYes = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
   }
   public void show()
   {
     noStroke();
-    fill(yes);
-    ellipse((float)x, (float)y, 5, 5);
+    fill(nYes);
+    ellipse((float)nX, (float)nY, 5, 5);
   }
   public void move()
   {
-    x = x + Math.cos(angle) * spd;
-    y = y + Math.sin(angle) * spd;
+    nX = nX + Math.cos(nAngle) * nSpd;
+    nY = nY + Math.sin(nAngle) * nSpd;
   }
 }
 interface Particle
@@ -47,25 +49,35 @@ interface Particle
   public void show();
   public void move();
 }
-class OddballParticle extends NormalParticle
+class OddballParticle implements Particle
 {
+  double oX, oY, oSpd, oAngle;
+  int oYes;
   OddballParticle()
   {
-    spd = (int)(Math.random()*PI);
-    angle = (Math.random()*spd);
+    oX = width/2;
+    oY = height/2;
+    oSpd = (Math.random()*10);
+    oAngle = (Math.random()*PI);
   }
   public void show()
   {
+    noStroke();
     fill(0, 225, 0);
-        ellipse((float)x, (float)y, 50, 50);
+    ellipse((float)oX, (float)oY, 50, 50);
   }
   public void move()
   {
-    x = x + (Math.random()*5)+3;
-    y = y + Math.cos(spd);
+    oX = oX + (Math.random()*10)-5;
+    oY = oY + (Math.random()*10)-5;
   }
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-  //your code here
+ void show()
+  {
+    fill (69, 135, 214);
+    noStroke();
+    ellipse((float)nX, (float)nY, 50, 50);
+  }
 }
